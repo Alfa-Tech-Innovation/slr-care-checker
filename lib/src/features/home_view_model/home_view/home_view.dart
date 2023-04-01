@@ -1,4 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:slr_care_checker/src/components/custom_app_bar.dart';
+
+import '../../../components/details_row.dart';
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({super.key});
@@ -14,62 +17,54 @@ class _HomeScreenState extends State<HomeScreen> {
       child: Scaffold(
         body: Stack(children: [
           Column(
-            children: [
+            children: const [
               Padding(
-                padding: const EdgeInsets.all(10),
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: const [
-                    CircleAvatar(
-                      backgroundImage: AssetImage("assets/train.png"),
-                    ),
-                    Text("SLR Care"),
-                    CircleAvatar(
-                      backgroundImage: AssetImage("assets/user.png"),
-                      backgroundColor: Colors.white,
-                    )
-                  ],
+                padding: EdgeInsets.all(10),
+                child: CustomAppBar(
+                  appbartext: "SLR Care",
                 ),
-              )
+              ),
+              SizedBox(height: 10),
+              DetailsRow(),
             ],
           ),
-          Align(
-            alignment: Alignment.bottomCenter,
-            child: ElevatedButton(
-              onPressed: () {
-                //add event here
-              },
-              style: ElevatedButton.styleFrom(
-                shape: const CircleBorder(),
-                padding: const EdgeInsets.all(10),
-              ),
-              child: Image.asset(
-                "assets/qr-code.png",
-                width: 60,
-              ),
-            ),
-          ),
         ]),
+        floatingActionButton: FloatingActionButton.large(
+          onPressed: () {},
+          child: Image.asset(
+            "assets/qr-code.png",
+            width: 60,
+          ),
+        ),
+        floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
         bottomNavigationBar: BottomAppBar(
           height: 50,
           color: Colors.blue,
-          child:
-              Row(mainAxisAlignment: MainAxisAlignment.spaceBetween, children: [
-            Expanded(
-                child: Material(
-              borderRadius: BorderRadius.circular(20),
-              child: const Icon(Icons.home_outlined),
-            )),
+          shape: const CircularNotchedRectangle(),
+          notchMargin: 5,
+          child: Row(
+              mainAxisSize: MainAxisSize.max,
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                Expanded(
+                    child: Material(
+                  borderRadius: BorderRadius.circular(20),
+                  child: const Icon(Icons.home_outlined, size: 38),
+                )),
 
-            const Expanded(
-                child: SizedBox()), // this will handle the fab spacing
+                const Expanded(
+                    child: SizedBox()), // this will handle the fab spacing
 
-            Expanded(
-                child: Material(
-                    borderRadius: BorderRadius.circular(20),
-                    child: const Icon(Icons.history))),
-          ]),
+                Expanded(
+                    child: Material(
+                        borderRadius: BorderRadius.circular(20),
+                        child: const Icon(
+                          Icons.history,
+                          size: 38,
+                        ))),
+              ]),
         ),
+        backgroundColor: const Color(0xffE1F8FF),
       ),
     );
   }
