@@ -31,9 +31,9 @@ migrate_working_dir/
 .pub-cache/
 .pub/
 /build/
-/linux/
-/windows/
-/web/
+linux/
+windows/
+web/
 
 
 # Symbolication related
