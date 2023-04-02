@@ -15,17 +15,20 @@ class _HomeScreenState extends State<HomeScreen> {
   Widget build(BuildContext context) {
     return SafeArea(
       child: Scaffold(
+        appBar: AppBar(
+          title: Padding(
+            padding: EdgeInsets.all(10),
+            child: CustomAppBar(
+              appbartext: "SLR Care",
+            ),
+          ),
+        ),
         body: Stack(children: [
-          Column(
-            children: const [
-              Padding(
-                padding: EdgeInsets.all(10),
-                child: CustomAppBar(
-                  appbartext: "SLR Care",
-                ),
-              ),
-              SizedBox(height: 10),
-              DetailsRow(),
+          ListView(
+            children: [
+              ListTile(
+                title: Text("Badulla"),
+              )
             ],
           ),
         ]),
