@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:slr_care_checker/src/components/custom_app_bar.dart';
 
 import '../../../components/details_row.dart';
+import '../../../components/ticket_list/ticket_list.dart';
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({super.key});
@@ -23,15 +24,7 @@ class _HomeScreenState extends State<HomeScreen> {
             ),
           ),
         ),
-        body: Stack(children: [
-          ListView(
-            children: [
-              ListTile(
-                title: Text("Badulla"),
-              )
-            ],
-          ),
-        ]),
+        body: ticket_list(),
         floatingActionButton: FloatingActionButton.large(
           onPressed: () {},
           child: Image.asset(
