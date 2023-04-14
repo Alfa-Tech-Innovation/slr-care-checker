@@ -13,8 +13,9 @@ class CustomButton extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      width: 170,
-      height: 80,
+      margin: const EdgeInsets.all(10),
+      width: 150,
+      height: 75,
       decoration: BoxDecoration(
         color: buttoncolor,
         borderRadius: BorderRadius.circular(50),

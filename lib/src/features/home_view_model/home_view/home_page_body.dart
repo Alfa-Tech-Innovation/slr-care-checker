@@ -34,7 +34,7 @@ class HomePageBody extends StatelessWidget {
 
           Container(
             width: size.width,
-            height: 388,
+            // height: 388,
             margin: const EdgeInsets.all(15),
             decoration: BoxDecoration(
                 color: const Color(0xffA1E8FF),
@@ -44,6 +44,7 @@ class HomePageBody extends StatelessWidget {
                 ]),
             child: Column(
               children: [
+                const SizedBox(height: 10,),
                 Row(
                   children: const [
                     Icon(Icons.location_on),
@@ -51,7 +52,7 @@ class HomePageBody extends StatelessWidget {
                     Text(
                       "Last Station",
                       style:
-                          TextStyle(fontSize: 30, fontWeight: FontWeight.w600),
+                      TextStyle(fontSize: 30, fontWeight: FontWeight.w600),
                     )
                   ],
                 ),
@@ -73,10 +74,10 @@ class HomePageBody extends StatelessWidget {
                             borderRadius: BorderRadius.circular(10)),
                         child: const Center(
                             child: Text(
-                          "Beruwala",
-                          style: TextStyle(
-                              fontSize: 36, fontWeight: FontWeight.w400),
-                        )),
+                              "Beruwala",
+                              style: TextStyle(
+                                  fontSize: 36, fontWeight: FontWeight.w400),
+                            )),
                       ),
                       const Icon(
                         Icons.arrow_right_rounded,
@@ -86,17 +87,20 @@ class HomePageBody extends StatelessWidget {
                   ),
                 ),
                 const SizedBox(height: 10),
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceAround,
-                  children: const [
-                    CustomButton(
-                      buttontext: "End Trip",
-                    ),
-                    CustomButton(
-                      buttontext: "Confirm",
-                      buttoncolor: Color(0xff3096B4),
-                    )
-                  ],
+                SingleChildScrollView(
+                  scrollDirection: Axis.horizontal,
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceAround,
+                    children: const [
+                      CustomButton(
+                        buttontext: "End Trip",
+                      ),
+                      CustomButton(
+                        buttontext: "Confirm",
+                        buttoncolor: Color(0xff3096B4),
+                      )
+                    ],
+                  ),
                 ),
                 const SizedBox(height: 20),
                 Stack(alignment: Alignment.center, children: [
@@ -105,7 +109,7 @@ class HomePageBody extends StatelessWidget {
                     height: 60,
                     margin: const EdgeInsets.only(left: 10, right: 10),
                     decoration:
-                        BoxDecoration(borderRadius: BorderRadius.circular(20)),
+                    BoxDecoration(borderRadius: BorderRadius.circular(20)),
                     child: LinearProgressIndicator(
                       semanticsLabel: "Deshan Sirthumika",
                       backgroundColor: Colors.blue[200],
@@ -118,6 +122,7 @@ class HomePageBody extends StatelessWidget {
                     style: TextStyle(fontSize: 20, fontWeight: FontWeight.w500),
                   ),
                 ]),
+                SizedBox(height: 10,)
               ],
             ),
           ),
