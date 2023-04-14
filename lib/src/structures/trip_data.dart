@@ -1,4 +1,3 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
 class TripData{
@@ -6,8 +5,9 @@ class TripData{
   String destination;
   int time;
   bool progress;
+  String trainName;
 
-  TripData({required this.start, required this.destination, required this.time, required this.progress});
+  TripData({required this.start, required this.destination, required this.time, required this.progress, this.trainName = "Train Name Unknown"});
 
   // converts the time of the trip from integer format and returns a string in the format "hh:mm<AM/PM>"
   String getFormattedTime() {

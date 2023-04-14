@@ -3,8 +3,8 @@ import 'package:slr_care_checker/src/components/custom_app_bar.dart';
 import 'package:slr_care_checker/src/structures/trip_data.dart';
 
 class HistoryPageBody extends StatefulWidget {
-  List<TripData> trips;
-  HistoryPageBody({super.key, required this.trips});
+  final List<TripData> trips;
+  const HistoryPageBody({super.key, required this.trips});
 
   @override
   State<HistoryPageBody> createState() => _HistoryPageBodyState();

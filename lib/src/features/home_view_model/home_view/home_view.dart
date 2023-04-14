@@ -6,38 +6,19 @@ import 'home_page_body.dart';
 enum CurrentPage{home, history}
 
 class HomeScreen extends StatefulWidget {
-  const HomeScreen({super.key});
+  final List<TripData> trips;
+
+  const HomeScreen({super.key, required this.trips});
 
   @override
   State<HomeScreen> createState() => _HomeScreenState();
 }
 
 class _HomeScreenState extends State<HomeScreen> {
-  List<TripData> _trips;
   late final List _screens;
 
-  void setTrips(List<TripData> trips) {
-    _trips = trips;
-  }
-
-  _HomeScreenState() : _trips = []{
-    setTrips(
-        [
-          TripData(
-              start: "Kurunegala",
-              destination: "Colombo",
-              time: 0800,
-              progress: false
-          ),
-          TripData(
-              start: "Colombo",
-              destination: "Bambalapitiya",
-              time: 1130,
-              progress: true
-          )
-        ]
-    );
-    _screens = <Widget>[const HomePageBody(), HistoryPageBody(trips: _trips)];
+  _HomeScreenState(){
+    _screens = <Widget>[const HomePageBody(), HistoryPageBody(trips: widget.trips)];
   }
 
   int _currentindex = CurrentPage.home.index;  // Current page you are on.
