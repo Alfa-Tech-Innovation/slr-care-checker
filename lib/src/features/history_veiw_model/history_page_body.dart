@@ -66,8 +66,9 @@ class _HistoryPageBodyState extends State<HistoryPageBody> {
             itemBuilder: (BuildContext context, int index){
               return GestureDetector(
                 child: Card(
+                  color: const Color(0xffA1E8FF),
                   margin: const EdgeInsets.all(10),
-                  shape: const RoundedRectangleBorder(),
+                  shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(25)),
                   child: Column(
                     children: [
                       Align(
@@ -115,11 +116,7 @@ class _HistoryPageBodyState extends State<HistoryPageBody> {
                                 fontSize: 14
                             ),
                           ),
-                          trailing: const CircleAvatar(
-                            backgroundColor: Colors.white,
-                            foregroundColor: Colors.black54,
-                            child: Icon(Icons.train),
-                          ),
+                          trailing: widget.trips[index].getIcon()
                         ),
                       )
                     ],

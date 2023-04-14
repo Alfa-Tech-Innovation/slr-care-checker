@@ -1,3 +1,6 @@
+import 'package:flutter/cupertino.dart';
+import 'package:flutter/material.dart';
+
 class TripData{
   String start;
   String destination;
@@ -25,6 +28,23 @@ class TripData{
     }
     else {
       return "Completed";
+    }
   }
+
+  Widget getIcon(){
+    if (progress){
+      return const CircleAvatar(
+        backgroundColor: Color(0xffA1E8FF),
+        foregroundColor: Colors.black54,
+        child: Icon(Icons.train),
+      );
+    }
+    else{
+      return const CircleAvatar(
+        backgroundColor: Color(0xFF5FFFA3),
+        foregroundColor: Colors.black54,
+        child: Icon(Icons.check),
+      );
+    }
   }
 }
