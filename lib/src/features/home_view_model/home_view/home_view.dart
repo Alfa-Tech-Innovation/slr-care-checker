@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:slr_care_checker/src/components/custom_app_bar.dart';
-
-import '../../../components/details_row.dart';
+import 'package:slr_care_checker/src/components/details_row.dart';
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({super.key});
@@ -46,6 +45,7 @@ class _HomeScreenState extends State<HomeScreen> {
               mainAxisSize: MainAxisSize.max,
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
+                const SizedBox(width: 10,),
                 Expanded(
                     child: Material(
                   borderRadius: BorderRadius.circular(20),
@@ -62,6 +62,7 @@ class _HomeScreenState extends State<HomeScreen> {
                           Icons.history,
                           size: 38,
                         ))),
+                const SizedBox(width: 10)
               ]),
         ),
         backgroundColor: const Color(0xffE1F8FF),

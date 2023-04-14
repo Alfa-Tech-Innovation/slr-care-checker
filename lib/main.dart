@@ -13,7 +13,7 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
-      title: 'Flutter Demo',
+      title: "SLR Care - Checker",
       theme: ThemeData(
         // is not restarted.
         primarySwatch: Colors.blue,
