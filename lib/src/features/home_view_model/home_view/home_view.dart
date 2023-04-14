@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:slr_care_checker/src/components/custom_app_bar.dart';
+import 'package:slr_care_checker/src/features/history_veiw_model/history_page_body.dart';
 
-import '../../../components/details_row.dart';
+import 'home_page_body.dart';
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({super.key});
@@ -11,26 +11,20 @@ class HomeScreen extends StatefulWidget {
 }
 
 class _HomeScreenState extends State<HomeScreen> {
+  int _currentindex = 0;
+  Color focuscolor1 = Colors.blue;
+  Color focuscolor2 = Colors.blue;
+  final List _screens = <Widget>[const HomePageBody(), const HistoryPageBody()];
+
   @override
   Widget build(BuildContext context) {
     return SafeArea(
       child: Scaffold(
-        body: Stack(children: [
-          Column(
-            children: const [
-              Padding(
-                padding: EdgeInsets.all(10),
-                child: CustomAppBar(
-                  appbartext: "SLR Care",
-                ),
-              ),
-              SizedBox(height: 10),
-              DetailsRow(),
-            ],
-          ),
-        ]),
+        body: _screens.elementAt(_currentindex),
         floatingActionButton: FloatingActionButton.large(
-          onPressed: () {},
+          onPressed: () {
+            //qr function here
+          },
           child: Image.asset(
             "assets/qr-code.png",
             width: 60,
@@ -46,22 +40,51 @@ class _HomeScreenState extends State<HomeScreen> {
               mainAxisSize: MainAxisSize.max,
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
-                Expanded(
-                    child: Material(
-                  borderRadius: BorderRadius.circular(20),
-                  child: const Icon(Icons.home_outlined, size: 38),
-                )),
+                InkWell(
+                  onTap: () {
+                    setState(() {
+                      _currentindex = 0;
+                      focuscolor1 = Colors.white;
+                      if (_currentindex == 0) {
+                        focuscolor2 = Colors.blue;
+                      }
+                    });
+                  },
+                  child: Container(
+                    width: 100,
+                    height: 40,
+                    decoration: BoxDecoration(
+                        color: focuscolor1,
+                        borderRadius: BorderRadius.circular(20)),
+                    child: const Icon(Icons.home_outlined, size: 38),
+                  ),
+                ),
 
-                const Expanded(
-                    child: SizedBox()), // this will handle the fab spacing
+                // const Expanded(
+                //     child: SizedBox()), // this will handle the fab spacing
 
-                Expanded(
-                    child: Material(
-                        borderRadius: BorderRadius.circular(20),
-                        child: const Icon(
-                          Icons.history,
-                          size: 38,
-                        ))),
+                InkWell(
+                  onTap: () {
+                    setState(() {
+                      _currentindex = 1;
+                      focuscolor2 = Colors.white;
+                      if (_currentindex == 1) {
+                        focuscolor1 = Colors.blue;
+                      }
+                    });
+                  },
+                  child: Container(
+                    width: 100,
+                    height: 40,
+                    decoration: BoxDecoration(
+                        color: focuscolor2,
+                        borderRadius: BorderRadius.circular(20)),
+                    child: const Icon(
+                      Icons.history,
+                      size: 38,
+                    ),
+                  ),
+                ),
               ]),
         ),
         backgroundColor: const Color(0xffE1F8FF),
