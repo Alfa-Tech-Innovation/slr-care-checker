@@ -23,13 +23,24 @@ class HomePageBody extends StatelessWidget {
           ),
           const SizedBox(height: 10),
           //use custom details row witch is in components
-          const DetailsRow(
-              containerColor: Colors.blue,
+          DetailsRow(
+              containerColor: Colors.transparent,
               detaiText: "Data last synced at 10.36 ",
-              detailwidget: Text(
-                "10:36",
-                style: TextStyle(fontSize: 25, fontWeight: FontWeight.bold),
-              )),
+              detailwidget: Container(
+                  width: 100,
+                  height: 50,
+                  decoration: BoxDecoration(
+                    borderRadius: BorderRadius.circular(25),
+                    color: Colors.blue
+                  ),
+                  child: const Center(
+                    child: Text(
+                      "10:36",
+                      style: TextStyle(fontSize: 25, fontWeight: FontWeight.bold, color: Colors.white),
+                    ),
+                  )
+              )
+          ),
           const SizedBox(height: 10),
 
           Container(
@@ -111,7 +122,7 @@ class HomePageBody extends StatelessWidget {
                     decoration:
                     BoxDecoration(borderRadius: BorderRadius.circular(20)),
                     child: LinearProgressIndicator(
-                      semanticsLabel: "Deshan Sirthumika",
+                      semanticsLabel: "Deshan Sithumika",
                       backgroundColor: Colors.blue[200],
                       minHeight: 40,
                       value: 0.7,
@@ -122,7 +133,7 @@ class HomePageBody extends StatelessWidget {
                     style: TextStyle(fontSize: 20, fontWeight: FontWeight.w500),
                   ),
                 ]),
-                SizedBox(height: 10,)
+                const SizedBox(height: 10,)
               ],
             ),
           ),

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:slr_care_checker/src/features/history_veiw_model/history_page_body.dart';
+import 'package:slr_care_checker/src/structures/trip_data.dart';
 import 'home_page_body.dart';
 
 enum CurrentPage{home, history}
@@ -12,10 +13,36 @@ class HomeScreen extends StatefulWidget {
 }
 
 class _HomeScreenState extends State<HomeScreen> {
+  List<TripData> _trips;
+  late final List _screens;
+
+  void setTrips(List<TripData> trips) {
+    _trips = trips;
+  }
+
+  _HomeScreenState() : _trips = []{
+    setTrips(
+        [
+          TripData(
+              start: "Kurunegala",
+              destination: "Colombo",
+              time: 0800,
+              progress: false
+          ),
+          TripData(
+              start: "Colombo",
+              destination: "Bambalapitiya",
+              time: 1130,
+              progress: true
+          )
+        ]
+    );
+    _screens = <Widget>[const HomePageBody(), HistoryPageBody(trips: _trips)];
+  }
+
   int _currentindex = CurrentPage.home.index;  // Current page you are on.
   Color homeBtnColor = Colors.white;
   Color historyBtnColor = Colors.blue;
-  final List _screens = <Widget>[const HomePageBody(), const HistoryPageBody()];
 
   @override
   Widget build(BuildContext context) {
@@ -41,14 +68,6 @@ class _HomeScreenState extends State<HomeScreen> {
               mainAxisSize: MainAxisSize.max,
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
-                // const SizedBox(width: 10,),
-                // Expanded(
-                //     child: Material(
-                //   borderRadius: BorderRadius.circular(20),
-                //   child: const Icon(Icons.home_outlined, size: 38),
-                // )
-                // ),
-
                 // HOME BUTTON
                 Expanded(
                   child: Center(
@@ -73,16 +92,6 @@ class _HomeScreenState extends State<HomeScreen> {
                       ),
                   ),
                 ),
-                // const Expanded(
-                //     child: SizedBox()), // this will handle the fab spacing
-
-                // Expanded(
-                //     child: Material(
-                //         borderRadius: BorderRadius.circular(20),
-                //         child: const Icon(
-                //           Icons.history,
-                //           size: 38,
-                //         ))),
 
                 // HISTORY BUTTON
                 Expanded(
