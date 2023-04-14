@@ -7,20 +7,18 @@ enum CurrentPage{home, history}
 
 class HomeScreen extends StatefulWidget {
   final List<TripData> trips;
+  final int selectedIndex;   // This is the index corresponding to the trip item on the trips list that should be shown on the home screen
+  late final List<Widget> _screens;
 
-  const HomeScreen({super.key, required this.trips});
+  HomeScreen({super.key, required this.trips, required this.selectedIndex}){
+    _screens = [HomePageBody(trip: trips[selectedIndex],), HistoryPageBody(trips: trips)];
+  }
 
   @override
   State<HomeScreen> createState() => _HomeScreenState();
 }
 
 class _HomeScreenState extends State<HomeScreen> {
-  late final List _screens;
-
-  _HomeScreenState(){
-    _screens = <Widget>[const HomePageBody(), HistoryPageBody(trips: widget.trips)];
-  }
-
   int _currentindex = CurrentPage.home.index;  // Current page you are on.
   Color homeBtnColor = Colors.white;
   Color historyBtnColor = Colors.blue;
@@ -29,7 +27,7 @@ class _HomeScreenState extends State<HomeScreen> {
   Widget build(BuildContext context) {
     return SafeArea(
       child: Scaffold(
-        body: _screens.elementAt(_currentindex),
+        body: widget._screens.elementAt(_currentindex),
         floatingActionButton: FloatingActionButton.large(
           onPressed: () {
             //qr function here

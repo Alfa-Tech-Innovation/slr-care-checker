@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:slr_care_checker/src/components/custom_app_bar.dart';
 import 'package:slr_care_checker/src/components/details_row.dart';
+import 'package:slr_care_checker/src/features/home_view_model/home_view/home_view.dart';
 import 'package:slr_care_checker/src/structures/trip_data.dart';
 
 class WelcomePageBody extends StatefulWidget {
@@ -66,55 +67,60 @@ class _WelcomePageBodyState extends State<WelcomePageBody> {
                           itemCount: widget.trips.length,
                           scrollDirection: Axis.horizontal,
                           itemBuilder: (BuildContext context, int index){
-                            return Card(
-                                margin: const EdgeInsets.all(15),
-                                shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(25)),
-                                child: Column(
-                                  children: [
-                                    SizedBox(
-                                        width: 150,
-                                        height: 85,
-                                        child: Column(
-                                          children: [
-                                            StartEndTile(icon: Icons.train, title: widget.trips[index].start),
-                                            StartEndTile(icon: Icons.location_on, title: widget.trips[index].destination)
-                                          ],
-                                        )
-                                    ),
-                                    Expanded(
-                                      child: Container(
-                                        decoration: const BoxDecoration(
-                                          color: Colors.lightBlue,
-                                          borderRadius: BorderRadius.only(bottomLeft: Radius.circular(15), bottomRight: Radius.circular(15))
-                                        ),
-                                        child: Column(
-                                          children: [
-                                            Container(
-                                              margin: const EdgeInsets.only(top: 15),
-                                              child: Text(
-                                                widget.trips[index].trainName,
-                                                style: const TextStyle(
-                                                  color: Colors.white
+                            return GestureDetector(
+                              onTap: (){
+                                Navigator.push(context, MaterialPageRoute(builder: (context) => HomeScreen(trips: widget.trips, selectedIndex: index,)));
+                              },
+                              child: Card(
+                                  margin: const EdgeInsets.all(15),
+                                  shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(25)),
+                                  child: Column(
+                                    children: [
+                                      SizedBox(
+                                          width: 150,
+                                          height: 85,
+                                          child: Column(
+                                            children: [
+                                              StartEndTile(icon: Icons.train, title: widget.trips[index].start),
+                                              StartEndTile(icon: Icons.location_on, title: widget.trips[index].destination)
+                                            ],
+                                          )
+                                      ),
+                                      Expanded(
+                                        child: Container(
+                                          decoration: const BoxDecoration(
+                                              color: Colors.lightBlue,
+                                              borderRadius: BorderRadius.only(bottomLeft: Radius.circular(15), bottomRight: Radius.circular(15))
+                                          ),
+                                          child: Column(
+                                            children: [
+                                              Container(
+                                                margin: const EdgeInsets.only(top: 15),
+                                                child: Text(
+                                                  widget.trips[index].trainName,
+                                                  style: const TextStyle(
+                                                      color: Colors.white
+                                                  ),
                                                 ),
                                               ),
-                                            ),
-                                            SizedBox(
-                                            width: 150,
-                                            // height: 100,
-                                            child: ListTile(
-                                              leading: const Icon(Icons.watch_later_outlined, color: Colors.white,),
-                                              title: Text(
-                                                widget.trips[index].getFormattedTime(),
-                                                style: const TextStyle(color: Colors.white),
-                                              ),
-                                            ),
-                                          )
-                                          ],
+                                              SizedBox(
+                                                width: 150,
+                                                // height: 100,
+                                                child: ListTile(
+                                                  leading: const Icon(Icons.watch_later_outlined, color: Colors.white,),
+                                                  title: Text(
+                                                    widget.trips[index].getFormattedTime(),
+                                                    style: const TextStyle(color: Colors.white),
+                                                  ),
+                                                ),
+                                              )
+                                            ],
+                                          ),
                                         ),
-                                      ),
-                                    )
-                                  ],
-                                )
+                                      )
+                                    ],
+                                  )
+                              ),
                             );
                           },
                         ),

@@ -22,6 +22,18 @@ class TripData{
     return '$hour:$minute$amPm';
   }
 
+  static getFormattedForGivenTime(int time){
+    String hour = (time ~/ 100).toString();
+    String minute = (time % 100).toString().padLeft(2, '0');
+    String amPm = int.parse(hour) < 12 ? 'AM' : 'PM';
+    if (int.parse(hour) > 12) {
+      hour = (int.parse(hour) - 12).toString();
+    } else if (int.parse(hour) == 0) {
+      hour = '12';
+    }
+    return '$hour:$minute$amPm';
+  }
+
   String getProgress() {
     if (progress){
       return "In Progress";

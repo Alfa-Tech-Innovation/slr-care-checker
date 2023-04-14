@@ -2,10 +2,13 @@ import 'package:flutter/material.dart';
 import 'package:slr_care_checker/src/components/custom_app_bar.dart';
 import 'package:slr_care_checker/src/components/custom_button.dart';
 import 'package:slr_care_checker/src/components/details_row.dart';
+import 'package:slr_care_checker/src/structures/trip_data.dart';
 
 class HomePageBody extends StatelessWidget {
+  final TripData trip;
   const HomePageBody({
     super.key,
+    required this.trip
   });
 
   @override
