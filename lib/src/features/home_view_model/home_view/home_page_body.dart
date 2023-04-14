@@ -35,6 +35,7 @@ class HomePageBody extends StatelessWidget {
           Container(
             width: size.width,
             height: 388,
+            margin: const EdgeInsets.all(15),
             decoration: BoxDecoration(
                 color: const Color(0xffA1E8FF),
                 borderRadius: BorderRadius.circular(15),
@@ -102,7 +103,7 @@ class HomePageBody extends StatelessWidget {
                   Container(
                     width: 500,
                     height: 60,
-                    padding: const EdgeInsets.only(left: 10, right: 10),
+                    margin: const EdgeInsets.only(left: 10, right: 10),
                     decoration:
                         BoxDecoration(borderRadius: BorderRadius.circular(20)),
                     child: LinearProgressIndicator(

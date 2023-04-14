@@ -2,8 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:slr_care_checker/src/features/history_veiw_model/history_page_body.dart';
 import 'home_page_body.dart';
 
-enum CurrentPage {
-}
+enum CurrentPage{home, history}
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({super.key});
@@ -13,10 +12,9 @@ class HomeScreen extends StatefulWidget {
 }
 
 class _HomeScreenState extends State<HomeScreen> {
-  // int _currentindex = 0;  // Current page you are on.
-  // Color focuscolor1 = Colors.blue;
-  // Color focuscolor2 = Colors.white;
-  CurrentPage currentPage = CurrentPage.home;
+  int _currentindex = CurrentPage.home.index;  // Current page you are on.
+  Color homeBtnColor = Colors.white;
+  Color historyBtnColor = Colors.blue;
   final List _screens = <Widget>[const HomePageBody(), const HistoryPageBody()];
 
   @override
@@ -43,7 +41,7 @@ class _HomeScreenState extends State<HomeScreen> {
               mainAxisSize: MainAxisSize.max,
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
-                const SizedBox(width: 10,),
+                // const SizedBox(width: 10,),
                 // Expanded(
                 //     child: Material(
                 //   borderRadius: BorderRadius.circular(20),
@@ -52,23 +50,27 @@ class _HomeScreenState extends State<HomeScreen> {
                 // ),
 
                 // HOME BUTTON
-                InkWell(
-                  onTap: () {
-                    setState(() {
-                      _currentindex = 0;
-                      focuscolor1 = Colors.white;
-                      if (_currentindex == 0) {
-                        focuscolor2 = Colors.blue;
-                      }
-                    });
-                  },
-                  child: Container(
-                    width: 100,
-                    height: 40,
-                    decoration: BoxDecoration(
-                        color: focuscolor1,
-                        borderRadius: BorderRadius.circular(20)),
-                    child: const Icon(Icons.home, size: 38),
+                Expanded(
+                  child: Center(
+                      child: InkWell(
+                        onTap: () {
+                          setState(() {
+                            _currentindex = CurrentPage.home.index;
+                            homeBtnColor = Colors.white;
+                            if (_currentindex == 0) {
+                              historyBtnColor = Colors.blue;
+                            }
+                          });
+                        },
+                        child: Container(
+                          width: 100,
+                          height: 40,
+                          decoration: BoxDecoration(
+                              color: homeBtnColor,
+                              borderRadius: BorderRadius.circular(20)),
+                          child: const Icon(Icons.home, size: 38),
+                        ),
+                      ),
                   ),
                 ),
                 // const Expanded(
@@ -83,29 +85,31 @@ class _HomeScreenState extends State<HomeScreen> {
                 //         ))),
 
                 // HISTORY BUTTON
-                InkWell(
-                  onTap: () {
-                    setState(() {
-                      _currentindex = 1;
-                      focuscolor2 = Colors.white;
-                      if (_currentindex == 1) {
-                        focuscolor1 = Colors.blue;
-                      }
-                    });
-                  },
-                  child: Container(
-                    width: 100,
-                    height: 40,
-                    decoration: BoxDecoration(
-                        color: focuscolor2,
-                        borderRadius: BorderRadius.circular(20)),
-                    child: const Icon(
-                      Icons.history,
-                      size: 38,
-                    ),
-                  ),
+                Expanded(
+                  child: Center(
+                    child: InkWell(
+                      onTap: () {
+                        setState(() {
+                          _currentindex = CurrentPage.history.index;
+                          historyBtnColor = Colors.white;
+                          homeBtnColor = Colors.blue;
+                        });
+                      },
+                      child: Container(
+                        width: 100,
+                        height: 40,
+                        decoration: BoxDecoration(
+                            color: historyBtnColor,
+                            borderRadius: BorderRadius.circular(20)),
+                        child: const Icon(
+                          Icons.history,
+                          size: 38,
+                        ),
+                      ),
+                    )
+                  )
                 ),
-                const SizedBox(width: 10)
+                // const SizedBox(width: 10)
               ]),
         ),
         backgroundColor: const Color(0xffE1F8FF),
