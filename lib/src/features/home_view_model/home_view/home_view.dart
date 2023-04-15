@@ -1,26 +1,33 @@
 import 'package:flutter/material.dart';
 import 'package:slr_care_checker/src/features/history_veiw_model/history_page_body.dart';
-
+import 'package:slr_care_checker/src/structures/trip_data.dart';
 import 'home_page_body.dart';
 
+enum CurrentPage{home, history}
+
 class HomeScreen extends StatefulWidget {
-  const HomeScreen({super.key});
+  final List<TripData> trips;
+  final int selectedIndex;   // This is the index corresponding to the trip item on the trips list that should be shown on the home screen
+  late final List<Widget> _screens;
+
+  HomeScreen({super.key, required this.trips, required this.selectedIndex}){
+    _screens = [HomePageBody(trip: trips[selectedIndex],), HistoryPageBody(trips: trips)];
+  }
 
   @override
   State<HomeScreen> createState() => _HomeScreenState();
 }
 
 class _HomeScreenState extends State<HomeScreen> {
-  int _currentindex = 0;
-  Color focuscolor1 = Colors.blue;
-  Color focuscolor2 = Colors.blue;
-  final List _screens = <Widget>[const HomePageBody(), const HistoryPageBody()];
+  int _currentindex = CurrentPage.home.index;  // Current page you are on.
+  Color homeBtnColor = Colors.white;
+  Color historyBtnColor = Colors.blue;
 
   @override
   Widget build(BuildContext context) {
     return SafeArea(
       child: Scaffold(
-        body: _screens.elementAt(_currentindex),
+        body: widget._screens.elementAt(_currentindex),
         floatingActionButton: FloatingActionButton.large(
           onPressed: () {
             //qr function here
@@ -40,51 +47,57 @@ class _HomeScreenState extends State<HomeScreen> {
               mainAxisSize: MainAxisSize.max,
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
-                InkWell(
-                  onTap: () {
-                    setState(() {
-                      _currentindex = 0;
-                      focuscolor1 = Colors.white;
-                      if (_currentindex == 0) {
-                        focuscolor2 = Colors.blue;
-                      }
-                    });
-                  },
-                  child: Container(
-                    width: 100,
-                    height: 40,
-                    decoration: BoxDecoration(
-                        color: focuscolor1,
-                        borderRadius: BorderRadius.circular(20)),
-                    child: const Icon(Icons.home_outlined, size: 38),
+                // HOME BUTTON
+                Expanded(
+                  child: Center(
+                      child: InkWell(
+                        onTap: () {
+                          setState(() {
+                            _currentindex = CurrentPage.home.index;
+                            homeBtnColor = Colors.white;
+                            if (_currentindex == 0) {
+                              historyBtnColor = Colors.blue;
+                            }
+                          });
+                        },
+                        child: Container(
+                          width: 100,
+                          height: 40,
+                          decoration: BoxDecoration(
+                              color: homeBtnColor,
+                              borderRadius: BorderRadius.circular(20)),
+                          child: const Icon(Icons.home, size: 38),
+                        ),
+                      ),
                   ),
                 ),
 
-                // const Expanded(
-                //     child: SizedBox()), // this will handle the fab spacing
-
-                InkWell(
-                  onTap: () {
-                    setState(() {
-                      _currentindex = 1;
-                      focuscolor2 = Colors.white;
-                      if (_currentindex == 1) {
-                        focuscolor1 = Colors.blue;
-                      }
-                    });
-                  },
-                  child: Container(
-                    width: 100,
-                    height: 40,
-                    decoration: BoxDecoration(
-                        color: focuscolor2,
-                        borderRadius: BorderRadius.circular(20)),
-                    child: const Icon(
-                      Icons.history,
-                      size: 38,
-                    ),
-                  ),
+                // HISTORY BUTTON
+                Expanded(
+                  child: Center(
+                    child: InkWell(
+                      onTap: () {
+                        setState(() {
+                          _currentindex = CurrentPage.history.index;
+                          historyBtnColor = Colors.white;
+                          homeBtnColor = Colors.blue;
+                        });
+                      },
+                      child: Container(
+                        width: 100,
+                        height: 40,
+                        decoration: BoxDecoration(
+                            color: historyBtnColor,
+                            borderRadius: BorderRadius.circular(20)),
+                        child: const Icon(
+                          Icons.history,
+                          size: 38,
+                        ),
+                      ),
+                    )
+                  )
                 ),
+                // const SizedBox(width: 10)
               ]),
         ),
         backgroundColor: const Color(0xffE1F8FF),
