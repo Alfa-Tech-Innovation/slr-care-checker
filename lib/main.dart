@@ -9,18 +9,24 @@ void main() {
 class MyApp extends StatelessWidget {
   MyApp({super.key});
 
-  final List<TripData> trips =  [
+  final List<TripData> trips = [
     TripData(
-        start: "Kurunegala",
-        destination: "Colombo",
-        time: 0800,
-        progress: false,
+      start: "Kurunegala",
+      destination: "Colombo",
+      time: 0800,
+      progress: false,
     ),
     TripData(
-        start: "Colombo",
-        destination: "Bambalapitiya",
-        time: 1130,
-        progress: true,
+      start: "Colombo",
+      destination: "Bambalapitiya",
+      time: 1130,
+      progress: true,
+    ),
+    TripData(
+      start: "Galle",
+      destination: "Bambalapitiya",
+      time: 1230,
+      progress: true,
     )
   ];
   // This widget is the root of your application.
@@ -33,7 +39,9 @@ class MyApp extends StatelessWidget {
         // is not restarted.
         primarySwatch: Colors.blue,
       ),
-      home: WelcomePageBody(trips: trips,),
+      home: WelcomePageBody(
+        trips: trips,
+      ),
     );
   }
 }
