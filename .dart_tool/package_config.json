@@ -98,6 +98,12 @@
       "languageVersion": "2.12"
     },
     {
+      "name": "responsive_framework",
+      "rootUri": "file:///C:/Users/Deshan%20Sithumika/AppData/Local/Pub/Cache/hosted/pub.dev/responsive_framework-0.2.0",
+      "packageUri": "lib/",
+      "languageVersion": "2.17"
+    },
+    {
       "name": "sky_engine",
       "rootUri": "file:///C:/flutter/bin/cache/pkg/sky_engine",
       "packageUri": "lib/",
@@ -152,7 +158,7 @@
       "languageVersion": "2.19"
     }
   ],
-  "generated": "2023-04-11T14:33:12.946428Z",
+  "generated": "2023-04-16T14:47:02.686431Z",
   "generator": "pub",
   "generatorVersion": "2.19.6"
 }
