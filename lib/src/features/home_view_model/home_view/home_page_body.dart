@@ -2,10 +2,13 @@ import 'package:flutter/material.dart';
 import 'package:slr_care_checker/src/components/custom_app_bar.dart';
 import 'package:slr_care_checker/src/components/custom_button.dart';
 import 'package:slr_care_checker/src/components/details_row.dart';
+import 'package:slr_care_checker/src/structures/trip_data.dart';
 
 class HomePageBody extends StatelessWidget {
+  final TripData trip;
   const HomePageBody({
     super.key,
+    required this.trip
   });
 
   @override
@@ -23,18 +26,30 @@ class HomePageBody extends StatelessWidget {
           ),
           const SizedBox(height: 10),
           //use custom details row witch is in components
-          const DetailsRow(
-              containerColor: Colors.blue,
+          DetailsRow(
+              containerColor: Colors.transparent,
               detaiText: "Data last synced at 10.36 ",
-              detailwidget: Text(
-                "10:36",
-                style: TextStyle(fontSize: 25, fontWeight: FontWeight.bold),
-              )),
+              detailwidget: Container(
+                  width: 100,
+                  height: 50,
+                  decoration: BoxDecoration(
+                    borderRadius: BorderRadius.circular(25),
+                    color: Colors.blue
+                  ),
+                  child: const Center(
+                    child: Text(
+                      "10:36",
+                      style: TextStyle(fontSize: 25, fontWeight: FontWeight.bold, color: Colors.white),
+                    ),
+                  )
+              )
+          ),
           const SizedBox(height: 10),
 
           Container(
             width: size.width,
-            height: 388,
+            // height: 388,
+            margin: const EdgeInsets.all(15),
             decoration: BoxDecoration(
                 color: const Color(0xffA1E8FF),
                 borderRadius: BorderRadius.circular(15),
@@ -43,6 +58,7 @@ class HomePageBody extends StatelessWidget {
                 ]),
             child: Column(
               children: [
+                const SizedBox(height: 10,),
                 Row(
                   children: const [
                     Icon(Icons.location_on),
@@ -50,7 +66,7 @@ class HomePageBody extends StatelessWidget {
                     Text(
                       "Last Station",
                       style:
-                          TextStyle(fontSize: 30, fontWeight: FontWeight.w600),
+                      TextStyle(fontSize: 30, fontWeight: FontWeight.w600),
                     )
                   ],
                 ),
@@ -72,10 +88,10 @@ class HomePageBody extends StatelessWidget {
                             borderRadius: BorderRadius.circular(10)),
                         child: const Center(
                             child: Text(
-                          "Beruwala",
-                          style: TextStyle(
-                              fontSize: 36, fontWeight: FontWeight.w400),
-                        )),
+                              "Beruwala",
+                              style: TextStyle(
+                                  fontSize: 36, fontWeight: FontWeight.w400),
+                            )),
                       ),
                       const Icon(
                         Icons.arrow_right_rounded,
@@ -85,28 +101,31 @@ class HomePageBody extends StatelessWidget {
                   ),
                 ),
                 const SizedBox(height: 10),
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceAround,
-                  children: const [
-                    CustomButton(
-                      buttontext: "End Trip",
-                    ),
-                    CustomButton(
-                      buttontext: "Confirm",
-                      buttoncolor: Color(0xff3096B4),
-                    )
-                  ],
+                SingleChildScrollView(
+                  scrollDirection: Axis.horizontal,
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceAround,
+                    children: const [
+                      CustomButton(
+                        buttontext: "End Trip",
+                      ),
+                      CustomButton(
+                        buttontext: "Confirm",
+                        buttoncolor: Color(0xff3096B4),
+                      )
+                    ],
+                  ),
                 ),
                 const SizedBox(height: 20),
                 Stack(alignment: Alignment.center, children: [
                   Container(
                     width: 500,
                     height: 60,
-                    padding: const EdgeInsets.only(left: 10, right: 10),
+                    margin: const EdgeInsets.only(left: 10, right: 10),
                     decoration:
-                        BoxDecoration(borderRadius: BorderRadius.circular(20)),
+                    BoxDecoration(borderRadius: BorderRadius.circular(20)),
                     child: LinearProgressIndicator(
-                      semanticsLabel: "Deshan Sirthumika",
+                      semanticsLabel: "Deshan Sithumika",
                       backgroundColor: Colors.blue[200],
                       minHeight: 40,
                       value: 0.7,
@@ -117,6 +136,7 @@ class HomePageBody extends StatelessWidget {
                     style: TextStyle(fontSize: 20, fontWeight: FontWeight.w500),
                   ),
                 ]),
+                const SizedBox(height: 10,)
               ],
             ),
           ),
